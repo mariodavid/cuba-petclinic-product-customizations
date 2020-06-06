@@ -3,7 +3,7 @@
   xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
   messagesPack="com.rockymount.petclinic.web.screens.pet"
   xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd"
-  extends="com/haulmont/sample/petclinic/web/pet/pet/pet-browse.xml" icon="USER_MD">
+  extends="com/haulmont/sample/petclinic/web/pet/pet/pet-browse.xml">
   <facets>
     <inputDialog
       id="createVisitForPetDialog"
@@ -21,7 +21,11 @@
   <layout>
     <groupTable id="petsTable">
       <actions>
-        <action id="createVisit" trackSelection="true" caption="msg://createVisit"/>
+        <action id="createVisit"
+          trackSelection="true"
+          caption="msg://createVisit"
+          icon="USER_MD"
+        />
       </actions>
       <buttonsPanel id="buttonsPanel">
         <button id="createVisitBtn" action="petsTable.createVisit"/>

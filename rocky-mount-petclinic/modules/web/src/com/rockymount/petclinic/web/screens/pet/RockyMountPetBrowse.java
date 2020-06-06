@@ -4,8 +4,6 @@ import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.Notifications.NotificationType;
 import com.haulmont.cuba.gui.app.core.inputdialog.InputDialog;
-import com.haulmont.cuba.gui.app.core.inputdialog.InputParameter;
-import com.haulmont.cuba.gui.components.Action.ActionPerformedEvent;
 import com.haulmont.cuba.gui.components.GroupTable;
 import com.haulmont.cuba.gui.components.InputDialogFacet;
 import com.haulmont.cuba.gui.components.InputDialogFacet.CloseEvent;
@@ -24,15 +22,8 @@ import javax.inject.Inject;
 @UiDescriptor("rocky-mount-pet-browse.xml")
 public class RockyMountPetBrowse extends PetBrowse {
 
-
-    @Inject
-    protected Dialogs dialogs;
-    @Inject
-    protected MessageBundle messageBundle;
     @Inject
     protected GroupTable<Pet> petsTable;
-    @Inject
-    protected InputDialogFacet createVisitForPetDialog;
     @Inject
     protected Notifications notifications;
     @Inject
