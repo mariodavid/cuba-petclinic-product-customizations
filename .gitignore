@@ -3,9 +3,9 @@
 *.ipr
 *.iml
 *.iws
-build/*
-deploy/*
-modules/*/build/*
+*/build/*
+*/deploy/*
+*/modules/*/build/*
 out
 test-run
 *.DS_Store

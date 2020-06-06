@@ -82,10 +82,17 @@ configure(globalModule) {
   buildInfo {
     appName = 'CUBA Petclinic'
     properties = [
-        'License': 'Apache License 2.0',
-        'Github': 'https://github.com/cuba-platform/cuba-petclinic',
+        'License'      : 'Apache License 2.0',
+        'Github'       : 'https://github.com/cuba-platform/cuba-petclinic',
         'Issue Tracker': 'https://github.com/cuba-platform/cuba-petclinic/issues'
     ]
+  }
+
+  jar {
+    manifest {
+      attributes('App-Component-Id': cuba.artifact.group)
+      attributes('App-Component-Version': cuba.artifact.version + (cuba.artifact.isSnapshot ? '-SNAPSHOT' : ''))
+    }
   }
 }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+  xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+  messagesPack="com.rockymount.petclinic.web.screens.pet"
+  xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd"
+  extends="com/haulmont/sample/petclinic/web/pet/pet/pet-browse.xml" icon="USER_MD">
+  <facets>
+    <inputDialog
+      id="createVisitForPetDialog"
+      caption="msg://createVisitForPetCaption"
+      defaultActions="OK_CANCEL"
+      onAction="petTable.createVisit"
+    >
+      <parameters>
+        <enumParameter id="visitType"
+          enumClass="com.haulmont.sample.petclinic.entity.visit.VisitType"
+          caption="msg://visitType" />
+      </parameters>
+    </inputDialog>
+  </facets>
+  <layout>
+    <groupTable id="petsTable">
+      <actions>
+        <action id="createVisit" trackSelection="true" caption="msg://createVisit"/>
+      </actions>
+      <buttonsPanel id="buttonsPanel">
+        <button id="createVisitBtn" action="petsTable.createVisit"/>
+      </buttonsPanel>
+    </groupTable>
+  </layout>
+</window>
