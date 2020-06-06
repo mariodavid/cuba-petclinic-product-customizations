@@ -19,8 +19,8 @@
   <module name="web" dependsOn="global" blocks="web">
     <artifact name="petclinic-web" appJar="true"/>
     <artifact name="petclinic-web" classifier="web" ext="zip" configuration="webcontent"/>
-    <artifact name="petclinic-web-themes" configuration="themes"/>
     <artifact name="petclinic-web" ext="jar" configuration="themes" classifier="themes"/>
+
 
     <property name="cuba.springContextConfig"
       value="+com/haulmont/sample/petclinic/web-spring.xml"/>
@@ -35,8 +35,5 @@
       value="+com.haulmont.sample.petclinic.web.screens.visit.VisitTypeIcon"/>
     <property name="cuba.themeConfig"
       value="+/com/haulmont/sample/petclinic/web/helium-theme.properties"/>
-  </module>
-  <module name="web-themes">
-    <artifact name="petclinic-web-themes"/>
   </module>
 </app-component>
