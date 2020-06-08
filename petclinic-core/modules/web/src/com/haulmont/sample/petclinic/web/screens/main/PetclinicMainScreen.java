@@ -2,14 +2,17 @@ package com.haulmont.sample.petclinic.web.screens.main;
 
 import com.haulmont.addon.helium.web.theme.HeliumThemeVariantsManager;
 import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.global.Security;
 import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.components.Action.ActionPerformedEvent;
 import com.haulmont.cuba.gui.components.Button;
+import com.haulmont.cuba.gui.components.Timer;
 import com.haulmont.cuba.gui.components.Timer.TimerActionEvent;
 import com.haulmont.cuba.gui.components.mainwindow.SideMenu;
 import com.haulmont.cuba.gui.components.mainwindow.SideMenu.MenuItem;
 import com.haulmont.cuba.gui.icons.CubaIcon;
 import com.haulmont.cuba.gui.icons.Icons;
+import com.haulmont.cuba.gui.icons.Icons.Icon;
 import com.haulmont.cuba.gui.screen.OpenMode;
 import com.haulmont.cuba.gui.screen.Subscribe;
 import com.haulmont.cuba.gui.screen.UiController;
@@ -23,6 +26,7 @@ import com.vaadin.server.Page;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
+import org.springframework.util.CollectionUtils;
 
 
 @UiController("extMainScreen")
@@ -42,10 +46,14 @@ public class PetclinicMainScreen extends MainScreen {
     @Inject
     protected Button switchThemeModeBtn;
 
-    private static final Map<String, Icons.Icon> targetThemeIcons = new HashMap<String, Icons.Icon>() {{
+    private static final Map<String, Icon> targetThemeIcons = new HashMap<String, Icon>() {{
         put("light", CubaIcon.MOON_O);
         put("dark", CubaIcon.SUN_O);
     }};
+    @Inject
+    protected Security security;
+    @Inject
+    protected Timer refreshMyVisits;
 
     @Subscribe
     protected void initMainMenu(AfterShowEvent event) {
@@ -66,23 +74,29 @@ public class PetclinicMainScreen extends MainScreen {
 
     private void openPetclinicMenuItem() {
         final MenuItem petclinicMenu = sideMenu.getMenuItem("application-petclinic");
-        final MenuItem menuItem = petclinicMenu.getChildren().get(1);
-        petclinicMenu.setExpanded(true);
-        sideMenu.setSelectOnClick(true);
-        sideMenu.setSelectedItem(menuItem);
+
+        if (petclinicMenu != null && !CollectionUtils.isEmpty(petclinicMenu.getChildren())) {
+            final MenuItem menuItem = petclinicMenu.getChildren().get(1);
+            petclinicMenu.setExpanded(true);
+            sideMenu.setSelectOnClick(true);
+            sideMenu.setSelectedItem(menuItem);
+        }
     }
 
     private void createMyVisitMenuItem() {
-        MenuItem myVisits = sideMenu.createMenuItem("myVisits");
-        myVisits.setBadgeText(amountOfVisits() + " Visits");
-        myVisits.setCaption("My Visits");
-        myVisits.setCommand(menuItem ->
-            screenBuilders.screen(this)
-                .withScreenClass(MyVisits.class)
-                .withOpenMode(OpenMode.DIALOG)
-                .show()
-        );
-        sideMenu.addMenuItem(myVisits, 0);
+        if (security.isScreenPermitted("petclinic_myVisits")) {
+            MenuItem myVisits = sideMenu.createMenuItem("myVisits");
+            myVisits.setBadgeText(amountOfVisits() + " Visits");
+            myVisits.setCaption("My Visits");
+            myVisits.setCommand(menuItem ->
+                screenBuilders.screen(this)
+                    .withScreenClass(MyVisits.class)
+                    .withOpenMode(OpenMode.DIALOG)
+                    .show()
+            );
+            sideMenu.addMenuItem(myVisits, 0);
+            refreshMyVisits.start();
+        }
     }
 
     private int amountOfVisits() {

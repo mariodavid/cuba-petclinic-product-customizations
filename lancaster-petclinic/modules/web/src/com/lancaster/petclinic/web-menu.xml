@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
-    <menu id="application-lancasterpetclinic" insertBefore="administration">
-    </menu>
+  <menu id="application-lancasterpetclinic"
+    caption="mainMsg://menu-config.application-lancasterpetclinic">
+  <item screen="lancasterpetclinic_TreatmentRoom.browse"
+    caption="mainMsg://menu_config.lancasterpetclinic_TreatmentRoom.browse"/>
+  <item screen="lancasterpetclinic_DefaultTreatmentRoom.browse"
+    caption="mainMsg://menu_config.lancasterpetclinic_DefaultTreatmentRoom.browse"/>
+  </menu>
 </menu-config>

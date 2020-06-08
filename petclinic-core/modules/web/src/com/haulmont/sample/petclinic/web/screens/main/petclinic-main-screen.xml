@@ -5,7 +5,7 @@
         <action id="switchThemeMode"/>
     </actions>
     <facets>
-        <timer id="refreshMyVisits" delay="3000" autostart="true" repeating="true"/>
+        <timer id="refreshMyVisits" delay="3000" autostart="false" repeating="true"/>
     </facets>
     <layout>
         <cssLayout>

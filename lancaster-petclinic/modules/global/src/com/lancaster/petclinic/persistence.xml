@@ -2,5 +2,8 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="lancaster-petclinic" transaction-type="RESOURCE_LOCAL">
 
+        <class>com.lancaster.petclinic.entity.LancasterVisit</class>
+        <class>com.lancaster.petclinic.entity.TreatmentRoom</class>
+        <class>com.lancaster.petclinic.entity.DefaultTreatmentRoom</class>
     </persistence-unit>
 </persistence>

@@ -136,23 +136,23 @@ public class VisitBrowse extends StandardLookup<Visit> {
         }
     }
 
-    private void current(CalendarMode calendarMode) {
+    protected void current(CalendarMode calendarMode) {
         change(calendarMode, AT_DATE, timeSource.now().toLocalDate());
     }
 
-    private void atDate(CalendarMode calendarMode, LocalDate date) {
+    protected void atDate(CalendarMode calendarMode, LocalDate date) {
         change(calendarMode, AT_DATE, date);
     }
 
-    private void next(CalendarMode calendarMode) {
+    protected void next(CalendarMode calendarMode) {
         change(calendarMode, NEXT, calendarNavigator.getValue());
     }
 
-    private void previous(CalendarMode calendarMode) {
+    protected void previous(CalendarMode calendarMode) {
         change(calendarMode, PREVIOUS, calendarNavigator.getValue());
     }
 
-    private void change(CalendarMode calendarMode, CalendarNavigationMode navigationMode, LocalDate referenceDate) {
+    protected void change(CalendarMode calendarMode, CalendarNavigationMode navigationMode, LocalDate referenceDate) {
         this.calendarMode.setValue(calendarMode);
 
         calendarNavigators

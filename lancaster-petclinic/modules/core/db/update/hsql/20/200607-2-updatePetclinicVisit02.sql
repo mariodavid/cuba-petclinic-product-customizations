@@ -1,0 +1,1 @@
+update PETCLINIC_VISIT set DTYPE = 'LancasterVisit' where DTYPE is null ;
