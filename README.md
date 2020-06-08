@@ -1,56 +1,22 @@
-# CUBA Petclinic
+# CUBA Petclinic Product Customizations
 
 <p align="center">
   <img src="https://github.com/cuba-platform/cuba-petclinic/blob/master/img/petclinic_logo_with_slogan.svg"/>
 </p>
 
+This example shows how to use CUBA's application components in order to build customizations to the Petclinic product on a customer-by-customer basis.
 
-CUBA Petclinic is a CUBA platform example application dealing with the domain of a petclinic. It is based on the commonly known [Spring Petclinic](https://github.com/spring-projects/spring-petclinic) example.
+### Repository Structure
 
-The CUBA Petclinic application deals with the domain of a Pet clinic and the associated business workflows to manage a pet clinic.
+#### Petclinic Core
+The [petclinic-core](/petclinic-core) directory contains the regular CUBA Petclinic project. In order to act as an application component the [app-component.xml](/petclinic-core/modules/global/src/com/haulmont/sample/petclinic/app-component.xml) has been created (via CUBA studio).
 
-## Online Demo
+#### Lancaster Petclinic
 
-You can find the CUBA Petclinic as an online hosted example here: [CUBA Petclinic Online Demo](https://demo4.cuba-platform.com/petclinic)
+The [lancaster-petclinic](/lancaster-petclinic) project is a CUBA application, that uses the Petclinic as a basis. It contains some customizations, that are described in the [README](/lancaster-petclinic/README.md) of the project.
 
+The way it uses the petclinic-core is by adding it as a application-component in the [build.gradle](/lancaster-petclinic/build.gradle#L39).
 
-## Application Overview
+### Running Locally
 
-<a href="https://youtu.be/2DKske7EId8"><img src="https://raw.githubusercontent.com/cuba-platform/cuba-petclinic/master/img/login-screen.png"/></a>
-
-### Functionalities
-
-CUBA Petclinic consists mainly of the following functionalities:
-
-* Manage Pet Visits through a Calendar
-* Track Visit Treatments for Nurses
-* Create Pets and Owners
-* Manage Nurses and Veterinarian of the Petclinic  
-
-### Screenshots
-
-#### Login
-![Petclinic Login](img/screenshots/petclinic-login.png)
-![Petclinic Main Screen](img/screenshots/petclinic-main-screen.png)
-![Petclinic Dark Main Screen](img/screenshots/petclinic-dark-main-screen.png)
-
-
-#### Visits
-![Petclinic Visit Calendar](img/screenshots/petclinic-visit-calendar.png)
-![Petclinic Visit Calendar Create Visit](img/screenshots/petclinic-visit-calendar-create-visit.png)
-![Petclinic Current Visits](img/screenshots/petclinic-current-visits.png)
-![Petclinic Visit All](img/screenshots/petclinic-visit-all.png)
-![Petclinic Dark Visit All](img/screenshots/petclinic-dark-visit-all.png)
-![Petclinic Dark Visit Calendar](img/screenshots/petclinic-dark-visit-calendar.png)
-
-#### Owners & Pets
-![Petclinic Pets](img/screenshots/petclinic-pets.png)
-![Petclinic Pet Detail](img/screenshots/petclinic-pet-detail.png)
-![Petclinic Owners](img/screenshots/petclinic-owners.png)
-
-
-## Domain Model
-
-![CUBA Petclinic Domain model](https://github.com/cuba-platform/cuba-petclinic/blob/master/img/domain-model.png)
-
-
+In order to run the different applications locally, the petclinic-core project has to be installed into the local Maven repository. This can be achieved via running the shell script `./install-petclinic-core.sh`. Alternatively the petclinic-core project can be opened in CUBA Studio and installed from there via the Main Menu: `CUBA > Advanced > Install App Component`.
