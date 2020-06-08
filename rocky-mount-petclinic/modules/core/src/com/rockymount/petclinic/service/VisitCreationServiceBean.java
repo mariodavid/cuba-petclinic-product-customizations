@@ -24,7 +24,7 @@ public class VisitCreationServiceBean implements VisitCreationService {
 
         visitForPet.setPet(pet);
         visitForPet.setVisitStart(timeSource.now().toLocalDateTime());
-        visitForPet.setVisitStart(timeSource.now().toLocalDateTime().plusHours(1));
+        visitForPet.setVisitEnd(timeSource.now().toLocalDateTime().plusHours(1));
 
         visitForPet.setType(visitType);
 

@@ -3,11 +3,13 @@ package com.rockymount.petclinic.web.screens.pet;
 import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.Notifications.NotificationType;
+import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.app.core.inputdialog.InputDialog;
 import com.haulmont.cuba.gui.components.GroupTable;
 import com.haulmont.cuba.gui.components.InputDialogFacet;
 import com.haulmont.cuba.gui.components.InputDialogFacet.CloseEvent;
 import com.haulmont.cuba.gui.screen.MessageBundle;
+import com.haulmont.cuba.gui.screen.OpenMode;
 import com.haulmont.cuba.gui.screen.Subscribe;
 import com.haulmont.cuba.gui.screen.UiController;
 import com.haulmont.cuba.gui.screen.UiDescriptor;
@@ -29,6 +31,11 @@ public class RockyMountPetBrowse extends PetBrowse {
     @Inject
     protected VisitCreationService visitCreationService;
 
+    @Inject
+    protected ScreenBuilders screenBuilders;
+    @Inject
+    protected MessageBundle messageBundle;
+
     @Subscribe("createVisitForPetDialog")
     protected void onCreateVisitForPetDialogClose(CloseEvent event) {
         if (event.getCloseAction().equals(InputDialog.INPUT_DIALOG_OK_ACTION)) {
@@ -36,13 +43,16 @@ public class RockyMountPetBrowse extends PetBrowse {
 
             final Visit createdVisit = visitCreationService
                 .createVisitForPet(petsTable.getSingleSelected(), visitType);
+
             notifications.create(NotificationType.TRAY)
-                            .withCaption("created..." + createdVisit.getId())
+                            .withCaption(messageBundle.getMessage("visitCreated"))
                             .show();
+
+            screenBuilders.editor(Visit.class, this)
+                .editEntity(createdVisit)
+                .withOpenMode(OpenMode.DIALOG)
+                .show();
+
         }
     }
-
-
-
-
 }

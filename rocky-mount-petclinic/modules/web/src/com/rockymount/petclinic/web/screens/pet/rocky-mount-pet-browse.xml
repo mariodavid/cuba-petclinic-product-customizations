@@ -7,14 +7,17 @@
   <facets>
     <inputDialog
       id="createVisitForPetDialog"
-      caption="msg://createVisitForPetCaption"
       defaultActions="OK_CANCEL"
+      caption="msg://createVisitForPetCaption"
       onAction="petTable.createVisit"
     >
       <parameters>
-        <enumParameter id="visitType"
+        <enumParameter
+          id="visitType"
           enumClass="com.haulmont.sample.petclinic.entity.visit.VisitType"
-          caption="msg://visitType" />
+          caption="msg://com.rockymount.petclinic.web.screens.pet/visitType"
+
+        />
       </parameters>
     </inputDialog>
   </facets>
